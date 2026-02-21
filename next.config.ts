@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     ];
   },
   experimental: {
+    turbopackFileSystemCacheForDev: true,
     optimizePackageImports: ['@remixicon/react'],
   },
 };
