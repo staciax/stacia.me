@@ -1,0 +1,36 @@
+name: React Doctor
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: &ignore_paths
+      - "README.md"
+      - "LICENSE"
+      - ".gitignore"
+      - ".zed/**"
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+    paths-ignore: *ignore_paths
+
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  react-doctor:
+    name: React Health Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run React Doctor
+        id: doctor
+        uses: millionco/react-doctor@main
+        with:
+          verbose: true
+          node-version: 24
+
+      - name: Check health score
+        run: |
+          echo "React health score ${{ steps.doctor.outputs.score }}/100"
+          test ${{ steps.doctor.outputs.score }} -ge 95

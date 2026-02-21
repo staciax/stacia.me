@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* see https://fumadocs.dev/docs/ui/theme */
+@import "@fumadocs/base-ui/css/neutral.css";
+@import "@fumadocs/base-ui/css/preset.css";
+
+/*@plugin "@tailwindcss/typography" {
+  className: "wysiwyg";
+}*/
+
+@custom-variant dark (&:is(.dark *));
+
+.wysiwyg :is(h1, h2, h3, h4, h5, h6) a {
+  text-decoration: none;
+}
+
+.wysiwyg :is(h1, h2, h3, h4, h5, h6) a:hover {
+  text-decoration: underline;
+}
+
+/*:root {}*/
+
+/*.dark {}*/
+
+html {
+  scroll-behavior: smooth;
+}
