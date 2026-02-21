@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-import { RootProvider } from '@/provider/base';
+import { RootProvider } from '@fumadocs/base-ui/provider/next';
 
 export const metadata: Metadata = {
   title: 'STACiA',

@@ -7,7 +7,6 @@ import {
   RiGitRepositoryLine,
   RiTwitterLine,
 } from '@remixicon/react';
-import { NextProvider } from 'fumadocs-core/framework/next';
 
 const nav = [
   { path: `/blog`, text: 'Blog', icon: <RiArticleLine /> },
@@ -31,12 +30,10 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <NextProvider>
-      <div className="flex w-full flex-col items-center px-5 font-mono leading-7 *:w-full *:max-w-2xl md:px-0">
-        <Header items={nav} socials={socials} />
-        {children}
-        <Footer />
-      </div>
-    </NextProvider>
+    <div className="flex w-full flex-col items-center px-5 font-mono leading-7 *:w-full *:max-w-2xl md:px-0">
+      <Header items={nav} socials={socials} />
+      {children}
+      <Footer />
+    </div>
   );
 }
