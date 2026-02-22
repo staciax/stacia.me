@@ -6,6 +6,8 @@ import {
 } from 'fumadocs-mdx/config';
 import { z } from 'zod';
 
+// docs: https://fumadocs.dev/docs/mdx/collections
+
 export const content = defineDocs({
   dir: 'content',
   docs: {
@@ -14,6 +16,7 @@ export const content = defineDocs({
     }),
     postprocess: {
       includeProcessedMarkdown: true,
+      extractLinkReferences: true,
     },
   },
   meta: {
