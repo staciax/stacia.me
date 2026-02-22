@@ -1,11 +1,13 @@
 import { type InferPageType, loader, update } from 'fumadocs-core/source';
 import { lucideIconsPlugin } from 'fumadocs-core/source/lucide-icons';
-import { content } from 'fumadocs-mdx:collections/server';
+import { toFumadocsSource } from 'fumadocs-mdx/runtime/server';
+import { blog as blogPosts, content } from 'fumadocs-mdx:collections/server';
 
 const filteredSource = update(content.toFumadocsSource())
   .files((files) =>
     files.filter((file) => {
       if (file.type === 'meta') return true;
+      if (file.path.startsWith('/posts')) return false;
       return !file.data.private;
     }),
   )
@@ -14,6 +16,10 @@ const filteredSource = update(content.toFumadocsSource())
 export const source = loader(filteredSource, {
   baseUrl: '/',
   plugins: [lucideIconsPlugin()],
+});
+
+export const blog = loader(toFumadocsSource(blogPosts, []), {
+  baseUrl: '/posts',
 });
 
 export function getPageImage(page: InferPageType<typeof source>) {
