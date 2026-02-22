@@ -30,7 +30,7 @@ export default async function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex w-full flex-col items-center px-5 font-mono leading-7 *:w-full *:max-w-2xl md:px-0">
+    <div className="mx-auto flex w-full max-w-2xl flex-col px-4 py-8">
       <Header items={nav} socials={socials} />
       {children}
       <Footer />
