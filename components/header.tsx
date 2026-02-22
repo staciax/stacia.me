@@ -24,19 +24,19 @@ type HeaderProps = {
 export default function Header({ items, socials }: HeaderProps) {
   return (
     <header className="flex flex-col items-center justify-center bg-background py-8 md:flex-row md:justify-between">
-      <div className="flex items-center gap-4">
-        <div>
+      <ul className="flex items-center gap-4">
+        <li className="list-none">
           <Link
             href="/"
             className="font-bold text-gray-800 text-xl dark:text-gray-200"
           >
             STACIA
           </Link>
-        </div>
+        </li>
         {items.map((item) => (
-          <div key={item.text}>
+          <li key={item.text} className="list-none">
             <Link
-              className="text-base opacity-50 transition-all duration-200 hover:opacity-100 md:text-sm"
+              className="text-base text-fd-muted-foreground opacity-50 transition-all duration-200 hover:text-fd-accent-foreground hover:opacity-100 md:text-sm"
               href={item.path}
             >
               {item.icon && (
@@ -45,16 +45,14 @@ export default function Header({ items, socials }: HeaderProps) {
                 </span>
               )}
               <span
-                className={
-                  item.icon ? 'hidden md:block' : 'block text-base md:text-sm'
-                }
+                className={item.icon ? 'hidden md:block' : 'block text-base'}
               >
                 {item.text}
               </span>
             </Link>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       <div className="flex items-center gap-4">
         {socials.map((social) => (
           <a
@@ -62,7 +60,7 @@ export default function Header({ items, socials }: HeaderProps) {
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="opacity-50 transition-opacity duration-200 hover:opacity-100"
+            className="text-base text-fd-muted-foreground opacity-50 transition-all duration-200 hover:text-fd-accent-foreground hover:opacity-100 md:text-sm"
           >
             {social?.icon ? social.icon : <div />}
           </a>
