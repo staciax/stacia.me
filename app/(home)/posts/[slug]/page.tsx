@@ -17,7 +17,9 @@ export default async function Page(props: PageProps<'/posts/[slug]'>) {
       <ContentPage>
         <div className="mb-8">
           <h1 className="mb-0">{page.data.title}</h1>
-          <p className="not-prose">test</p>
+          {page.data.description && (
+            <p className="not-prose">{page.data.description}</p>
+          )}
           <p className="not-prose">
             {new Date(page.data.date).toLocaleDateString()}
           </p>
