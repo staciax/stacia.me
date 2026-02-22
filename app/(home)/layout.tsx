@@ -9,8 +9,16 @@ import {
 } from '@remixicon/react';
 
 const nav = [
-  { path: `/blog`, text: 'Blog', icon: <RiArticleLine /> },
-  { path: `/projects`, text: 'Projects', icon: <RiGitRepositoryLine /> },
+  {
+    url: `/blog`,
+    text: 'Blog',
+    icon: <RiArticleLine />,
+  },
+  {
+    url: `/projects`,
+    text: 'Projects',
+    icon: <RiGitRepositoryLine />,
+  },
 ];
 
 const socials = [

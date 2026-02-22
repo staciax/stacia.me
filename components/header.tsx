@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 type NavItem = {
-  path: string;
+  url: string;
   text: string;
   icon?: ReactNode;
 };
@@ -37,7 +37,7 @@ export default function Header({ items, socials }: HeaderProps) {
           <li key={item.text} className="list-none">
             <Link
               className="text-base text-fd-muted-foreground opacity-50 transition-all duration-200 hover:text-fd-accent-foreground hover:opacity-100 md:text-sm"
-              href={item.path}
+              href={item.url}
             >
               {item.icon && (
                 <span className="flex items-center justify-center md:hidden">
