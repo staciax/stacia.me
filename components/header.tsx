@@ -30,7 +30,7 @@ export default function Header({ items, socials }: HeaderProps) {
             href="/"
             className="font-bold text-gray-800 text-xl dark:text-gray-200"
           >
-            STACIA
+            STAC/A
           </Link>
         </li>
         {items.map((item) => (
