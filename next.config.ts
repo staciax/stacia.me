@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   reactStrictMode: true,
   logging: {
-    browserToTerminal: true
+    browserToTerminal: true,
   },
   async rewrites() {
     return [
