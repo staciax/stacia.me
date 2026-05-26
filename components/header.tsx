@@ -20,44 +20,38 @@ type HeaderProps = {
   socials: SocialItem[];
 };
 
-// TODO: bg-background
 
 export default function Header({ items, socials }: HeaderProps) {
   return (
-    <header className="flex flex-col items-center justify-center bg-background py-8 md:flex-row md:justify-between">
-      <ul className="flex items-center gap-4">
-        <li className="list-none">
-          <Link href="/" className="font-bold text-fd-foreground text-xl">
-            STAC/A
-          </Link>
-        </li>
+    <header className="sticky top-0 z-50 flex items-center justify-between bg-background/80 py-8 backdrop-blur-lg">
+      <Link href="/" className="font-bold text-fd-foreground text-xl">
+        STAC/A
+      </Link>
+      <nav className="flex items-center gap-4">
         {items.map((item) => {
           const Icon = item.icon;
 
           return (
-            <li key={item.text} className="list-none">
-              <Link
-                aria-label={Icon ? item.text : undefined}
-                className="inline-flex text-base text-fd-muted-foreground/50 transition-colors duration-200 hover:text-fd-accent-foreground md:text-sm"
-                href={item.url}
-              >
-                {Icon && (
-                  <span
-                    className="flex items-center justify-center md:hidden"
-                    aria-hidden
-                  >
-                    {Icon}
-                  </span>
-                )}
-                <span className={Icon ? 'hidden md:block' : 'block text-base'}>
-                  {item.text}
+            <Link
+              key={item.text}
+              aria-label={Icon ? item.text : undefined}
+              className="inline-flex size-5 items-center justify-center text-fd-muted-foreground/50 transition-colors duration-200 hover:text-fd-accent-foreground md:size-auto"
+              href={item.url}
+            >
+              {Icon && (
+                <span
+                  className="flex size-5 items-center justify-center md:hidden"
+                  aria-hidden
+                >
+                  {Icon}
                 </span>
-              </Link>
-            </li>
+              )}
+              <span className={Icon ? 'hidden text-sm md:block' : 'block text-sm'}>
+                {item.text}
+              </span>
+            </Link>
           );
         })}
-      </ul>
-      <div className="flex items-center gap-4">
         {socials.map((social) => {
           const Icon = social?.icon ? social.icon : <div />;
           return (
@@ -68,14 +62,14 @@ export default function Header({ items, socials }: HeaderProps) {
               rel="noopener noreferrer"
               aria-label={social.label}
               title={social.label}
-              className="inline-flex text-base text-fd-muted-foreground/50 transition-colors duration-200 hover:text-fd-accent-foreground md:text-sm"
+              className="inline-flex size-5 items-center justify-center text-fd-muted-foreground/50 transition-colors duration-200 hover:text-fd-accent-foreground"
             >
               {Icon}
             </a>
           );
         })}
         <ThemeToggle />
-      </div>
+      </nav>
     </header>
   );
 }

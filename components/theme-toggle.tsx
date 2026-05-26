@@ -1,8 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/cn';
-
-import { buttonVariants } from '@fumadocs/base-ui/components/ui/button';
 import { RiComputerLine, RiMoonLine, RiSunLine } from '@remixicon/react';
 import { useTheme } from 'next-themes';
 import { useSyncExternalStore } from 'react';
@@ -33,21 +30,18 @@ export function ThemeToggle() {
     <button
       type="button"
       aria-label={label}
-      className={cn(
-        buttonVariants({ variant: 'ghost', size: 'icon-sm' }),
-        'text-fd-muted-foreground/50 hover:text-fd-accent-foreground',
-      )}
+      className="inline-flex size-5 items-center justify-center text-fd-muted-foreground/50 transition-colors duration-200 hover:text-fd-accent-foreground"
       onClick={toggleSwitchTheme}
       ref={ref}
     >
       {mounted ? (
         isDarkMode ? (
-          <RiSunLine aria-hidden />
+          <RiSunLine className="size-5" aria-hidden />
         ) : (
-          <RiMoonLine aria-hidden />
+          <RiMoonLine className="size-5" aria-hidden />
         )
       ) : (
-        <RiComputerLine className="opacity-0" aria-hidden />
+        <RiComputerLine className="size-5" aria-hidden />
       )}
     </button>
   );
