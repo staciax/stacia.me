@@ -4,6 +4,7 @@ import type { NextConfig } from 'next';
 // docs: https://nextjs.org/docs/app/api-reference/config/next-config-js
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   reactCompiler: true,
   reactStrictMode: true,
   logging: {
@@ -19,7 +20,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     turbopackFileSystemCacheForDev: true,
-    optimizePackageImports: ['@remixicon/react'],
   },
 };
 
