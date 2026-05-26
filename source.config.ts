@@ -32,6 +32,7 @@ export const blog = defineCollections({
   type: 'doc',
   dir: 'content/posts',
   schema: pageSchema.extend({
+    author: z.string(),
     date: z.iso.date().or(z.date()),
     private: z.boolean().default(false),
   }),
