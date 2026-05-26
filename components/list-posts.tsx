@@ -10,14 +10,13 @@ function getName(path: string) {
 export type Post = InferPageType<typeof blog>;
 
 function PostItem({ post }: { post: Post }) {
+  const date = new Date(post.data.date ?? getName(post.path)).toDateString();
   return (
     <div>
       <Link key={post.url} href={post.url}>
         <span>{post.data.title}</span>
         <span> - </span>
-        <span>
-          {new Date(post.data.date ?? getName(post.path)).toDateString()}
-        </span>
+        <span>{date}</span>
       </Link>
     </div>
   );
