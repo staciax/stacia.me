@@ -1,6 +1,9 @@
 'use client';
 
-import { Airplay, Moon, Sun } from 'lucide-react';
+import { cn } from '@/lib/cn';
+
+import { buttonVariants } from '@fumadocs/base-ui/components/ui/button';
+import { RiComputerLine, RiMoonLine, RiSunLine } from '@remixicon/react';
 import { useTheme } from 'next-themes';
 import { useSyncExternalStore } from 'react';
 import { useModeAnimation } from 'react-theme-switch-animation';
@@ -20,25 +23,32 @@ export function ThemeToggle() {
     isDarkMode: theme === 'dark',
     onDarkModeChange: (nextIsDark) => setTheme(nextIsDark ? 'dark' : 'light'),
   });
+  const label = mounted
+    ? isDarkMode
+      ? 'Switch to light theme'
+      : 'Switch to dark theme'
+    : 'Toggle theme';
 
   return (
     <button
       type="button"
-      className="text-base opacity-50 transition-all duration-200 hover:opacity-100 md:text-sm"
+      aria-label={label}
+      className={cn(
+        buttonVariants({ variant: 'ghost', size: 'icon-sm' }),
+        'text-fd-muted-foreground/50 hover:text-fd-accent-foreground',
+      )}
       onClick={toggleSwitchTheme}
       ref={ref}
     >
-      <span className="flex items-center justify-center">
-        {mounted ? (
-          isDarkMode ? (
-            <Sun size={20} />
-          ) : (
-            <Moon size={20} />
-          )
+      {mounted ? (
+        isDarkMode ? (
+          <RiSunLine aria-hidden />
         ) : (
-          <Airplay size={20} className="opacity-0" aria-hidden />
-        )}
-      </span>
+          <RiMoonLine aria-hidden />
+        )
+      ) : (
+        <RiComputerLine className="opacity-0" aria-hidden />
+      )}
     </button>
   );
 }
