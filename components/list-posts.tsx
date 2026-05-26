@@ -10,15 +10,32 @@ function getName(path: string) {
 export type Post = InferPageType<typeof blog>;
 
 function PostItem({ post }: { post: Post }) {
-  const date = new Date(post.data.date ?? getName(post.path)).toDateString();
+  const date = new Date(
+    post.data.date ?? getName(post.path),
+  ).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  });
+
   return (
-    <div>
-      <Link key={post.url} href={post.url}>
-        <span>{post.data.title}</span>
-        <span> - </span>
-        <span>{date}</span>
-      </Link>
-    </div>
+    <Link
+      key={post.url}
+      href={post.url}
+      className="group not-prose no-underline"
+    >
+      <div className="flex flex-row items-end gap-2">
+        <div>
+          <span className="font-semibold text-2xl text-fd-muted-foreground transition-colors duration-300 group-hover:text-fd-foreground">
+            {post.data.title}
+          </span>
+        </div>
+        <div>
+          <span className="text-fd-muted-foreground text-sm opacity-60 transition-colors duration-300 group-hover:text-fd-foreground">
+            {date}
+          </span>
+        </div>
+      </div>
+    </Link>
   );
 }
 
@@ -35,10 +52,10 @@ export default function ListPosts() {
   }) as Record<string, typeof posts>;
 
   return (
-    <div>
+    <div className="not-prose">
       {Object.entries(groupedByYear).map(([year, posts]) => (
         <div key={year}>
-          <h2>{year}</h2>
+          <h2 className="mb-2 font-bold text-3xl">{year}</h2>
           {posts.map((post) => (
             <PostItem key={post.url} post={post} />
           ))}
