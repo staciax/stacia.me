@@ -12,12 +12,12 @@ const nav = [
   {
     url: `/blog`,
     text: 'Blog',
-    icon: <RiArticleLine />,
+    icon: <RiArticleLine size={20} />,
   },
   {
     url: `/projects`,
     text: 'Projects',
-    icon: <RiGitRepositoryLine />,
+    icon: <RiGitRepositoryLine size={20} />,
   },
 ];
 
@@ -25,12 +25,12 @@ const socials = [
   {
     url: 'https://github.com/staciax',
     label: 'GitHub',
-    icon: <RiGithubLine />,
+    icon: <RiGithubLine size={20} />,
   },
   {
     url: 'https://twitter.com/stacia__x',
     label: 'Twitter',
-    icon: <RiTwitterLine />,
+    icon: <RiTwitterLine size={20} />,
   },
 ];
 
