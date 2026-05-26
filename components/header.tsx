@@ -20,7 +20,6 @@ type HeaderProps = {
   socials: SocialItem[];
 };
 
-
 export default function Header({ items, socials }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between bg-background/80 py-8 backdrop-blur-lg">
@@ -46,7 +45,9 @@ export default function Header({ items, socials }: HeaderProps) {
                   {Icon}
                 </span>
               )}
-              <span className={Icon ? 'hidden text-sm md:block' : 'block text-sm'}>
+              <span
+                className={Icon ? 'hidden text-sm md:block' : 'block text-sm'}
+              >
                 {item.text}
               </span>
             </Link>
