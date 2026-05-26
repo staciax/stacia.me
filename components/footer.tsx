@@ -6,7 +6,7 @@ export default async function Footer() {
 
   return (
     <footer className="mt-10 mb-6 flex">
-      <p className="text-sm opacity-50">
+      <p className="text-fd-muted-foreground text-sm">
         &copy; {new Date().getUTCFullYear()} STACiA, All Rights Reserved.
       </p>
     </footer>
