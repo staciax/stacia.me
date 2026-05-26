@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   logging: {
     browserToTerminal: true,
+    fetches: { fullUrl: true },
   },
   serverExternalPackages: ['@takumi-rs/image-response'],
   async rewrites() {
