@@ -20,7 +20,7 @@ export default async function Page(props: PageProps<'/posts/[slug]'>) {
           {page.data.description && (
             <p className="not-prose">{page.data.description}</p>
           )}
-          <p className="not-prose">
+          <p className="not-prose text-fd-muted-foreground text-sm">
             {new Date(page.data.date).toLocaleDateString()}
           </p>
         </div>
