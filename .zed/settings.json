@@ -1,6 +1,6 @@
 {
-  "project_name": "stacia.me",
   "format_on_save": "on",
+  "read_only_files": [".next", ".source", "bun.lock", "node_modules"],
   "lsp": {
     "biome": {
       "binary": {
