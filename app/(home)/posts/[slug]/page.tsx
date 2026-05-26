@@ -37,3 +37,11 @@ export default async function Page(props: PageProps<'/posts/[slug]'>) {
     </div>
   );
 }
+
+export function generateStaticParams() {
+  return blog.getPages().flatMap((page) => {
+    const [slug] = page.slugs;
+
+    return slug ? [{ slug }] : [];
+  });
+}
