@@ -24,10 +24,12 @@ const nav = [
 const socials = [
   {
     url: 'https://github.com/staciax',
+    label: 'GitHub',
     icon: <RiGithubLine />,
   },
   {
     url: 'https://twitter.com/stacia__x',
+    label: 'Twitter',
     icon: <RiTwitterLine />,
   },
 ];
