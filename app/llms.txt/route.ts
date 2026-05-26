@@ -1,15 +1,10 @@
 import { source } from '@/lib/source';
 
-export const revalidate = false;
+import { llms } from 'fumadocs-core/source';
+import { cacheLife } from 'next/cache';
 
 export async function GET() {
-  const lines: string[] = [];
-  lines.push('# STACIA');
-  lines.push('');
-  for (const page of source.getPages()) {
-    lines.push(
-      `- [${page.data.title}](${page.url}): ${page.data.description ?? ''}`,
-    );
-  }
-  return new Response(lines.join('\n'));
+  'use cache';
+  cacheLife('max');
+  return new Response(llms(source).index());
 }
