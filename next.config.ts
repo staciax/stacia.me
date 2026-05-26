@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   logging: {
     browserToTerminal: true,
   },
+  serverExternalPackages: ['@takumi-rs/image-response'],
   async rewrites() {
     return [
       {
