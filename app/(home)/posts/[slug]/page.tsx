@@ -10,7 +10,7 @@ export default async function Page(props: PageProps<'/posts/[slug]'>) {
   const params = await props.params;
   const page = blog.getPage([params.slug]);
   if (!page) notFound();
-  const MDX = page.data.body;
+  const { body: Mdx } = await page.data.load();
 
   return (
     <div className="pt-4">
@@ -25,7 +25,7 @@ export default async function Page(props: PageProps<'/posts/[slug]'>) {
           </p>
         </div>
         <ContentBody>
-          <MDX
+          <Mdx
             components={getMDXComponents({
               // this allows you to link to other pages with relative file paths
               a: createRelativeLink(blog, page),

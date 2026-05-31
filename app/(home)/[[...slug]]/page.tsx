@@ -15,13 +15,14 @@ export default async function Page(props: PageProps<'/[[...slug]]'>) {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
-  const MDX = page.data.body;
+  const { body: Mdx } = await page.data.load();
+
   return (
     <ContentPage>
       <ContentTitle>{page.data.title}</ContentTitle>
       <ContentDescription>{page.data.description}</ContentDescription>
       <ContentBody>
-        <MDX
+        <Mdx
           components={getMDXComponents({
             // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),

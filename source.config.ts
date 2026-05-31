@@ -18,6 +18,7 @@ export const content = defineDocs({
       includeProcessedMarkdown: true,
       extractLinkReferences: true,
     },
+    async: true,
   },
   meta: {
     schema: metaSchema,
@@ -36,6 +37,7 @@ export const blog = defineCollections({
     date: z.iso.date().or(z.date()),
     private: z.boolean().default(false),
   }),
+  async: true,
 });
 
 export default defineConfig({
