@@ -4,6 +4,8 @@ import {
   defineConfig,
   defineDocs,
 } from 'fumadocs-mdx/config';
+import jsonSchema from 'fumadocs-mdx/plugins/json-schema';
+import lastModified from 'fumadocs-mdx/plugins/last-modified';
 import { z } from 'zod';
 
 // docs: https://fumadocs.dev/docs/mdx/collections
@@ -41,6 +43,12 @@ export const blog = defineCollections({
 });
 
 export default defineConfig({
+  plugins: [
+    jsonSchema({
+      insert: true,
+    }),
+    lastModified(),
+  ],
   mdxOptions: {
     // MDX options
   },
