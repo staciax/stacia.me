@@ -8,10 +8,10 @@ interface BackLinkProps {
 export default function BackLink({ href, label = 'cd ..' }: BackLinkProps) {
   return (
     <div className="my-8">
-      <span className="font-mono opacity-50">&gt; </span>
+      <span className="font-mono text-fd-muted-foreground text-sm">&gt; </span>
       <Link
         href={href}
-        className="not-prose opacity-50 transition delay-300 duration-300 hover:underline hover:opacity-75"
+        className="not-prose text-fd-muted-foreground text-sm transition delay-300 duration-300 hover:text-fd-foreground hover:underline"
       >
         {label}
       </Link>
