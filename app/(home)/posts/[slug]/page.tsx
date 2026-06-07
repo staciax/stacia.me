@@ -6,6 +6,7 @@ import { blog } from '@/lib/source';
 import { generateBlogPosting } from '@/lib/structured-data';
 import { getMDXComponents } from '@/mdx-components';
 
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export default async function Page(props: PageProps<'/posts/[slug]'>) {
@@ -49,4 +50,33 @@ export function generateStaticParams() {
 
     return slug ? [{ slug }] : [];
   });
+}
+
+export async function generateMetadata(
+  props: PageProps<'/posts/[slug]'>,
+): Promise<Metadata> {
+  const params = await props.params;
+  const page = blog.getPage([params.slug]);
+  if (!page) notFound();
+
+  const publishedTime =
+    typeof page.data.date === 'string'
+      ? page.data.date
+      : page.data.date.toISOString();
+
+  return {
+    title: page.data.title,
+    description: page.data.description,
+    alternates: {
+      canonical: page.url,
+    },
+    openGraph: {
+      type: 'article',
+      title: page.data.title,
+      description: page.data.description,
+      url: page.url,
+      publishedTime,
+      authors: [page.data.author],
+    },
+  };
 }
