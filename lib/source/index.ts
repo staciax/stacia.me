@@ -24,8 +24,6 @@ export const blog = loader(toFumadocsSource(blogPosts, []), {
   baseUrl: '/posts',
 });
 
-export type BlogPost = InferPageType<typeof blog>;
-
 export function getPageImage(page: InferPageType<typeof source>) {
   const segments = [...page.slugs, 'image.png'];
 
@@ -37,3 +35,6 @@ export function getPageImage(page: InferPageType<typeof source>) {
 
 export type Page = (typeof source)['$inferPage'];
 export type Meta = (typeof source)['$inferMeta'];
+
+export type BlogPost = (typeof blog)['$inferPage'];
+export type BlogMeta = (typeof blog)['$inferMeta'];
