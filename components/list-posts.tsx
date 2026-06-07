@@ -43,10 +43,10 @@ export default function ListPosts() {
   const posts = blog
     .getPages()
     .toSorted(
-    (a, b) =>
-      new Date(b.data.date ?? getName(b.path)).getTime() -
-      new Date(a.data.date ?? getName(a.path)).getTime(),
-  );
+      (a, b) =>
+        new Date(b.data.date ?? getName(b.path)).getTime() -
+        new Date(a.data.date ?? getName(a.path)).getTime(),
+    );
 
   const groupedByYear = Object.groupBy(posts, (page) => {
     const date = new Date(page.data.date ?? getName(page.path));
