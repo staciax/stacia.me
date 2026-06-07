@@ -1,7 +1,9 @@
 import BackLink from '@/components/back-link';
+import { JsonLd } from '@/components/json-ld';
 import { ContentBody, ContentPage } from '@/components/layouts/page-content';
 import { createRelativeLink } from '@/lib/mdx.server';
 import { blog } from '@/lib/source';
+import { generateBlogPosting } from '@/lib/structured-data';
 import { getMDXComponents } from '@/mdx-components';
 
 import { notFound } from 'next/navigation';
@@ -13,28 +15,31 @@ export default async function Page(props: PageProps<'/posts/[slug]'>) {
   const { body: Mdx } = await page.data.load();
 
   return (
-    <div className="pt-4">
-      <ContentPage>
-        <div className="mb-8">
-          <h1 className="mb-0">{page.data.title}</h1>
-          {page.data.description && (
-            <p className="not-prose">{page.data.description}</p>
-          )}
-          <p className="not-prose text-fd-muted-foreground text-sm">
-            {new Date(page.data.date).toLocaleDateString()}
-          </p>
-        </div>
-        <ContentBody>
-          <Mdx
-            components={getMDXComponents({
-              // this allows you to link to other pages with relative file paths
-              a: createRelativeLink(blog, page),
-            })}
-          />
-        </ContentBody>
-      </ContentPage>
-      <BackLink href="/blog" />
-    </div>
+    <>
+      <JsonLd data={await generateBlogPosting(page)} />
+      <div className="pt-4">
+        <ContentPage>
+          <div className="mb-8">
+            <h1 className="mb-0">{page.data.title}</h1>
+            {page.data.description && (
+              <p className="not-prose">{page.data.description}</p>
+            )}
+            <p className="not-prose text-fd-muted-foreground text-sm">
+              {new Date(page.data.date).toLocaleDateString()}
+            </p>
+          </div>
+          <ContentBody>
+            <Mdx
+              components={getMDXComponents({
+                // this allows you to link to other pages with relative file paths
+                a: createRelativeLink(blog, page),
+              })}
+            />
+          </ContentBody>
+        </ContentPage>
+        <BackLink href="/blog" />
+      </div>
+    </>
   );
 }
 
