@@ -40,7 +40,9 @@ function PostItem({ post }: { post: Post }) {
 }
 
 export default function ListPosts() {
-  const posts = [...blog.getPages()].sort(
+  const posts = blog
+    .getPages()
+    .toSorted(
     (a, b) =>
       new Date(b.data.date ?? getName(b.path)).getTime() -
       new Date(a.data.date ?? getName(a.path)).getTime(),
