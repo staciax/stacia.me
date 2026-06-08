@@ -10,10 +10,20 @@ on:
       - ".zed/**"
   pull_request:
     branches: [main]
-    types: [opened, reopened, synchronize]
+    types: [opened, synchronize, reopened, ready_for_review]
     paths-ignore: *ignore_paths
 
   workflow_dispatch: # Allows manual triggering of the workflow
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
+
+concurrency:
+  group: react-doctor-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   react-doctor:
@@ -25,10 +35,10 @@ jobs:
 
       - name: Run React Doctor
         id: doctor
-        uses: millionco/react-doctor@main
+        uses: millionco/react-doctor@v2
         with:
-          verbose: true
           node-version: 24
+          scope: full
 
       - name: Check health score
         run: |

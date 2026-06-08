@@ -13,8 +13,7 @@
     "format": "biome check --write . && biome format . --write",
     "types:check": "fumadocs-mdx && bun --bun next typegen && tsc --noEmit",
     "postinstall": "fumadocs-mdx",
-    "doctor": "react-doctor . --verbose --no-ami -y",
-    "doctor:verbose": "react-doctor . --verbose --no-ami -y"
+    "doctor": "bun react-doctor --diff main"
   },
   "dependencies": {
     "@fumadocs/base-ui": "~16.9.1",
